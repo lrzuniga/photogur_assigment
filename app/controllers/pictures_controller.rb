@@ -13,7 +13,14 @@ class PicturesController < ApplicationController
   end
 
   def create
-    render :text => "Saving a picture. URL: #{params[:url]}, Title: #{params[:title]}, Artist: #{params[:artist]}"
+    @picture = Picture.new(params.require(:picture).permit(:title, :artist, :url))
+    if @picture.save
+      redirect_to pictures_url
+    else
+     render :new
+   end
   end
+
+  
 
 end
