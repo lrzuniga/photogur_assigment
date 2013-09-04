@@ -22,14 +22,11 @@ class PicturesController < ApplicationController
   end
 
   def edit
-    # debugger
     @picture = Picture.find(params[:id])
   end
 
   def update
-    
     @picture = Picture.find(params[:id])
-    #debugger
     if @picture.update_attributes(params.require(:picture).permit(:title, :artist, :url))
       redirect_to "/pictures/#{@picture.id}"
     else
